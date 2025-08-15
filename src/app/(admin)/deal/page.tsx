@@ -259,9 +259,6 @@ export default function OrderTable() {
           "deal_id": payload.id,
           "location": payload.address
         }
-
-
-
         const res = await fetch(
           '/api/proxy/v1/orders', {
           body: JSON.stringify(body),
@@ -271,6 +268,7 @@ export default function OrderTable() {
         var result = await res.json();
         if (res.ok) {
           toast.success("process deals success")
+          setShowEditModal(false)
           fetchData();
         } else {
           toast.error(result.message)
