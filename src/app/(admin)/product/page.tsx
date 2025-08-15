@@ -28,8 +28,6 @@ interface Product {
 export default function OrderTable() {
   const [customers, setCustomers] = useState<Product[]>([]);
   const [selectedOrder, setSelectedOrder] = useState<Product | null>(null);
-  const [selectLead, setSelectLead] = useState<Product | null>(null);
-  const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [totalPage, setTotalPage] = useState(0);
   const [showNested, setShowNested] = useState<boolean>(false);
@@ -122,11 +120,6 @@ export default function OrderTable() {
 
     }
   }
-
-  const handleOpenDetail = (order: Product) => {
-    setSelectLead(order);
-    setShowDetailModal(true);
-  };
 
   const formatDateOnly = (date: Date) => {
     return date.toISOString().split('T')[0];

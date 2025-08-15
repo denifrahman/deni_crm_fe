@@ -18,12 +18,6 @@ export function middleware(request: NextRequest) {
     const requestHeaders = new Headers(request.headers)
     requestHeaders.set('Authorization', `Bearer ${token}`)
 
-    const response = NextResponse.next({
-        request: {
-            headers: requestHeaders,
-        },
-    })
-
 
     return NextResponse.next()
 }

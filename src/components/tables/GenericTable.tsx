@@ -2,26 +2,10 @@
 import React from "react";
 import {
     Table,
-    TableBody,
     TableCell,
     TableHeader,
     TableRow,
 } from "../ui/table";
-import Pagination from "./Pagination";
-interface Order {
-    id: number;
-    user: {
-        image: string;
-        name: string;
-        role: string;
-    };
-    projectName: string;
-    team: {
-        images: string[];
-    };
-    status: string;
-    budget: string;
-}
 
 export interface GenericTableProps<T> {
     data: T[];
