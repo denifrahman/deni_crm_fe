@@ -24,11 +24,20 @@ interface Product {
     speed: string;
     date: string;
 }
+interface PayloadProduct {
+    id: number;
+    name: string;
+    duration: number;
+    hpp: number;
+    margin: number;
+    status: string;
+    speed: string;
+}
 
 interface Props {
     isOpen: boolean;
     onClose: () => void;
-    onSubmit: (form: Product) => void;
+    onSubmit: (form: PayloadProduct) => void;
     initialData?: Product;
 }
 
@@ -143,8 +152,7 @@ export default function LeadFormModal({
             })
         })
         onSubmit({
-            name, duration, status, hpp, margin, price, speed, id,
-            date: ""
+            name, duration, status, hpp, margin, speed, id
         });
     };
 
@@ -204,32 +212,19 @@ export default function LeadFormModal({
                         onChange={(e) => setMargin(Number(e.target.value))}
                     />
                 </div>
-
                 <div>
                     <label className="block mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">
                         Status
                     </label>
-                    <input
-                        type="text"
+                    <select
                         className="w-full border px-3 py-2 rounded"
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
-                    />
+                    >
+                        <option value="non active">Non Active</option>
+                        <option value="active">Active</option>
+                    </select>
                 </div>
-
-                <div>
-                    <label className="block mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-                        Price
-                    </label>
-                    <input
-                        type="text"
-                        className="w-full bg-gray-500 text-white border border-gray-500 px-3 py-2 rounded focus:outline-none focus:border-blue-500"
-                        value={price}
-                        disabled
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-                </div>
-
                 <div>
                     <label className="block mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">
                         Speed

@@ -96,7 +96,6 @@ export default function OrderTable() {
       let url, method = '';
       if (selectedOrder != null) {
         if (payload.status == 'qualified') {
-
           url = `/api/proxy/v1/products/process/${selectedOrder?.id}`
           method = 'POST'
         } else {
