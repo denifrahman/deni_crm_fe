@@ -9,7 +9,8 @@ RUN npm install
 
 COPY . .
 
-RUN npx nuxi build
+
+RUN npm run build
 
 
 FROM node:18-alpine
@@ -17,9 +18,9 @@ FROM node:18-alpine
 WORKDIR /app
 
 COPY --from=builder /app/.output ./
-
-
 COPY --from=builder /app/package.json /app/package-lock.json ./
+
+
 RUN npm install --omit=dev || true
 
 ENV NITRO_PORT=8080
