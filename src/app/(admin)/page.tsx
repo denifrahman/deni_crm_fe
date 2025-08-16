@@ -19,14 +19,11 @@ export default function Ecommerce() {
       <div className="col-span-12 space-y-6 xl:col-span-7">
         <EcommerceMetrics />
 
-        {/* <MonthlySalesChart /> */}
+        <MonthlySalesChart />
       </div>
-      {/* <div className="col-span-12 xl:col-span-7">
-            <EcommerceMetrics />
-      </div> */}
-{/* 
 
-      <div className="col-span-12">
+
+      {/* <div className="col-span-12">
         <StatisticsChart />
       </div>
 

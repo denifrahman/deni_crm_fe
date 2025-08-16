@@ -4,6 +4,7 @@
 import GenericTable from "@/components/tables/GenericTable";
 import { TableCell } from "@/components/ui/table";
 import { useEffect, useRef, useState } from "react";
+import { formatRupiah, parseRupiah } from "@/app/helper/formatNumber";
 import qs from 'query-string';
 import ComponentCard from "@/components/common/ComponentCard";
 import Pagination from "@/components/tables/Pagination";
@@ -33,13 +34,17 @@ export default function OrderTable() {
   const [showNested, setShowNested] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const today = new Date();
+  const oneMonthAgo = new Date();
+  oneMonthAgo.setMonth(today.getMonth() - 1);
+
   const [filter, setFilter] = useState({
     page: 1,
     size: 10,
     search: '',
-    startDate: new Date(),
-    endDate: new Date()
-  })
+    startDate: oneMonthAgo,
+    endDate: today
+  });
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
@@ -243,8 +248,8 @@ export default function OrderTable() {
               <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400">{order.speed}</TableCell>
               <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400">{order.duration}</TableCell>
               <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400">{order.status}</TableCell>
-              <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400">{order.hpp}</TableCell>
-              <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400">{order.price}</TableCell>
+              <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400">{formatRupiah(order.hpp)}</TableCell>
+              <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400">{formatRupiah(Number(order.price))}</TableCell>
               <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400">{order.date}</TableCell>
               <TableCell className="px-4 py-3 text-start text-gray-500 text-start dark:text-gray-400 space-x-2">
                 {order?.status != "qualified" && (

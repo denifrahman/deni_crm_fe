@@ -31,13 +31,17 @@ export default function OrderTable() {
   const [showNested, setShowNested] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const today = new Date();
+  const oneMonthAgo = new Date();
+  oneMonthAgo.setMonth(today.getMonth() - 1);
+
   const [filter, setFilter] = useState({
     page: 1,
     size: 10,
     search: '',
-    startDate: new Date(),
-    endDate: new Date()
-  })
+    startDate: oneMonthAgo,
+    endDate: today
+  });
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
